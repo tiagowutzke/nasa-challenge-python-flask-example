@@ -1,7 +1,7 @@
 # Desafio da Nasa
 
-[Sobre o desafio](#Descricao-do-desafio)<br>
-[Especificações técnicas](#Especificacoes-tecnicas)
+[Sobre o desafio](#DESCRIÇÃO-DO-DESAFIO)<br>
+[Especificações técnicas](#ESPECIFICAÇÕES-TÉCNICAS)
 
 ## Descrição do desafio
 
@@ -36,5 +36,25 @@ A fórmula para o cálculo da pontuação é a seguinte:
 <img src="http://latex.codecogs.com/svg.latex?%5CDelta%20individual" />:  diferença entre as respostas individuais com a resposta do especialista.<br>
 <img src="http://latex.codecogs.com/svg.latex?%5CDelta%20grupo" />:  diferença entre as respostas do grupo com a resposta do especialista.
 
+## ESPECIFICAÇÕES TÉCNICAS
+
+### Stack utilizada
+
+**Python**
+- Lóginas de interface para persistência de dados
+
+**Python Flask**
+- Conteúdo dinâmico nas páginas html da aplicação
+- Configuração de rotas das páginas da aplicação e das APIs
+
+**Html, Css, Javascript**
+- Front-end da aplicação
+
+**Postgres**
+- Persistência dos dados 
+
+### API
+
+#### Get Session
 
 
