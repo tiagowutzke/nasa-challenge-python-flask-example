@@ -55,6 +55,9 @@ A fórmula para o cálculo da pontuação é a seguinte:
 
 ### API
 
+Para realizar o calculo da pontuação do desafio via API, é necessário:
+1 - 
+
 #### Get Session
 
 
