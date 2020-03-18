@@ -1,0 +1,26 @@
+{% extends "head.html" %}
+
+{% block body %}
+<body>
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <div class="alert alert-{{ alert_class }}">
+                    <h4>{{ title }}</h4>
+                    <h1 style="display:{{ style or 'none' }};margin-top:1%;" id="target">{{ message }}</h1>
+                    {% if not style %}
+                    {{ message }}
+                    {% endif %}
+                </div>
+                    <button type="submit" style="border-width:3px;" class="btn btn-outline-{{ alert_class }}">
+                        <a style="color:unset" href="{{ route }}">{{ message_button }}</a>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

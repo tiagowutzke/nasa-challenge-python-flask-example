@@ -1,0 +1,70 @@
+{% extends "head.html" %}
+
+{% block body %}
+<style>
+    #btn-submit{
+        width: 10%;
+        position: absolute;
+        border-width: 3px;
+        float: left;
+        margin-left: 51%;
+        margin-top: 0.2%;
+    }
+</style>
+
+<body>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <form action="{{ route }}" method="post">
+                    <div style="display:inline-flex;width:100%;margin-bottom:2%">
+                        <h1>{{ title }}</h1>
+                        <button type="submit" id="btn-submit" disabled class="btn btn-outline-success">Salvar</button>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Item</th>
+                            <th class="column2">Ordem</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for id, item in items: %}
+                            <tr>
+                                <td class="column1" style="font-size:1.2em;">
+                                    {{item}}
+                                    <input hidden type="number" id="id{{id}}" name="id{{id}}" value="{{id}}">
+                                </td>
+                                <td class="column2">
+                                    <select
+                                        style="height: 100%; width: 40%; margin-left: 30%;"
+                                        class="form-control"
+                                        id="{{id}}"
+                                        onchange="setInputValue('order{{id}}', this);
+                                                  should_enable_submit('form-control');
+                                                  dropOthersValues();"
+                                        required
+                                    >
+                                        <option selected disabled value="0">Escolha a ordem</option>
+                                        {% for x in range(items|length): %}
+                                        <option class="option{{x}}" value="{{x + 1}}">{{x + 1}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input hidden type="number" id="order{{id}}" name="order{{id}}">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

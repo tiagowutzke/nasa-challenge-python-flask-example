@@ -1,0 +1,64 @@
+{% extends "head.html" %}
+
+{% block body %}
+
+<style>
+    #index-title{
+        width:100%;
+        text-align: center;
+        background-image: url('{{ url_for('static', filename='images/nasa.png') }}');
+        height: 21em;
+        margin-bottom: 2%;
+    }
+
+    #index-title h1{
+        color: white;
+        font-size: 5em;
+        padding-top: 3%;
+    }
+</style>
+
+<body>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                    <div id="index-title">
+                        <h1 style="">{{ title }}</h1>
+                    </div>
+                    <p>
+                        Você é um membro da tripulação de uma nave espacial, que programou um encontro, junto com outra
+                        nave na superfície luminosa da Lua… entretanto dificuldades mecânicas obrigaram sua nave a uma
+                        descida forçada, num ponto distante a 100 Km do planejado encontro. A maior parte do equipamento,
+                        na descida forçada ficou avariada e já que sua sobrevivência depende de encontrar o ponto de
+                        encontro a 100 Km, é preciso escolher, dos itens abaixo, os mais essenciais, para este percurso.
+                    </p><br>
+                    <p>
+                        Abaixo, há uma lista de 15 itens de coisas que não ficaram estragadas na descida. Seu trabalho
+                        será de numerar esses itens em termos de sua importância para alcançar o ponto de encontro. A
+                        seguir, você irá comparar a sua lista com a lista de sua equipe para então gerar a sua pontuação
+                        desafio, comparando ambas as listas com um gabarito oficial da Nasa.
+                    </p><br>
+                    <p>
+                        A lista dos itens é a seguinte:<br><br>
+
+                        <ul>
+                            {% for id, item in items: %}
+                            <li>- {{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    <br>
+                    <button type="submit" style="border-width:3px;" class="btn btn-outline-info">
+                        <a style="color:unset" href="{{ route }}">INICIAR DESAFIO!</a>
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}
