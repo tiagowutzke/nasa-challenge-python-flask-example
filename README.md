@@ -172,8 +172,8 @@ curl -X GET -d '{
 Exemplo de resposta:
 ```json
 {
-	"code": 200
-	"message": "success"
+	"code": 200,
+	"message": "success",
 	"response": {
 		"score": -52.785714285714285 
 	}
