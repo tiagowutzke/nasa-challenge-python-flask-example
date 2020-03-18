@@ -58,12 +58,125 @@ A fórmula para o cálculo da pontuação é a seguinte:
 Para realizar o calculo da pontuação do desafio via API, é necessário realizar os seguintes passos:
 
 1 - Gerar um id de sessão
+
 2 - Inserir os dados de respostas individuais, passando o id de sessão no payload
+
 3 - Inserir os dados de respostas do grupo, passando o id de sessão no payload
+
 4 - Buscar a pontuação, a partir do id de sessão
 
 A seguir estão descritos os métodos para as chamadas de API desses passos.
 
 #### Get Session
 
+Para gerar um ID de sessão, que será utilizado para junção dos dados individuais e de grupo para cálcular a pontuação do desafio.
 
+Método: GET
+
+Exemplo de uso:
+```curl
+curl localhost:5000/api/get-session
+```
+
+Exemplo de resposta:
+```
+c2689b54-cc76-493e-99ba-f96f800155d9
+```
+O exemplo acima é o id de sessão (formato uuid v4) que deve ser usado na requisições a seguir.
+
+
+#### Post single
+
+Para realizar a inserção dos dados da ordenação de itens do desafio individual.
+
+Método: POST
+Parâmetros necessários:
+- Id de sessão: (string) id no formato uuid v4 gerado através da api [get-session](#GET-SESSION)
+- id do item: (int) id do item a ser ordenado no teste invididual
+- ordenação: (int) ordem de prioridade do item a ser lançado (de 1 a n, sendo n a quantidade total de itens cadastrados no banco de dados)
+
+Exemplo de uso:
+```curl
+curl -X POST -d '{ 
+        "session": "{{id da sessão}}", 
+        "orders":{ 
+          "{{id do item}}": "{{ordenacao do item}}", 
+          "{{id do item2}}": "{{ordenacao do item2}}"
+        }
+      }' 
+  -H 'Content-Type: application/json' localhost:5000/api/post-single
+```
+*Nota:*
+
+*- substitua os valores entre {{ }} com os valores correspondentes*
+
+*- no exemplo acima, foi demonstrada uma requisição de apenas dois itens, porém é possível inserir n itens dentro do atributo `orders` do payload*
+
+
+Resposta:
+- 200 em caso de sucesso.
+- 4xx em caso de falha. A mensagem de erro é descrita do parâmetro `message` do json de resposta.
+
+
+#### Post team
+
+Para realizar a inserção dos dados da ordenação de itens do desafio de grupo.
+
+Método: POST
+Parâmetros necessários:
+- Id de sessão: (string) id no formato uuid v4 gerado através da api [get-session](#GET-SESSION)
+- id do item: (int) id do item a ser ordenado no teste invididual
+- ordenação: (int) ordem de prioridade do item a ser lançado (de 1 a n, sendo n a quantidade total de itens cadastrados no banco de dados)
+
+Exemplo de uso:
+```curl
+curl -X POST -d '{ 
+        "session": "{{id da sessão}}", 
+        "orders":{ 
+          "{{id do item}}": "{{ordenacao do item}}", 
+          "{{id do item2}}": "{{ordenacao do item2}}"
+        }
+      }' 
+  -H 'Content-Type: application/json' localhost:5000/api/post-team
+```
+*Nota:*
+
+*- substitua os valores entre {{ }} com os valores correspondentes*
+
+*- no exemplo acima, foi demonstrada uma requisição de apenas dois itens, porém é possível inserir n itens dentro do atributo `orders` do payload*
+
+Resposta:
+- 200 em caso de sucesso.
+- 4xx em caso de falha. A mensagem de erro é descrita do parâmetro `message` do json de resposta.
+
+
+#### Score
+
+Para realizar o cálculo da pontuação do desafio.
+
+Método: GET
+Parâmetros necessários:
+- Id de sessão: (string) id no formato uuid v4 gerado através da api [get-session](#GET-SESSION)
+
+Exemplo de uso:
+```curl
+curl -X GET -d '{ 
+      "session": "{{id de sessão}}" 
+      }' 
+-H 'Content-Type: application/json' localhost:5000/api/score
+```
+*Nota:*
+
+*- substitua os valores entre {{ }} com os valores correspondentes*
+
+Exemplo de resposta:
+```json
+{
+	code: 200
+	message: success
+	response: {
+		score: -52.785714285714285 
+	}
+}
+
+```
