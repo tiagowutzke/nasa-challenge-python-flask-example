@@ -55,8 +55,14 @@ A fórmula para o cálculo da pontuação é a seguinte:
 
 ### API
 
-Para realizar o calculo da pontuação do desafio via API, é necessário:
-1 - 
+Para realizar o calculo da pontuação do desafio via API, é necessário realizar os seguintes passos:
+
+1 - Gerar um id de sessão
+2 - Inserir os dados de respostas individuais, passando o id de sessão no payload
+3 - Inserir os dados de respostas do grupo, passando o id de sessão no payload
+4 - Buscar a pontuação, a partir do id de sessão
+
+A seguir estão descritos os métodos para as chamadas de API desses passos.
 
 #### Get Session
 
