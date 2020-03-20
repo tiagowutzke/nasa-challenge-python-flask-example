@@ -107,7 +107,7 @@ def post_team():
     msg_template = insert_orders(
         request=request,
         session_id=session_id,
-        persistance=adapter.persistance,
+        persistance=adapter.persistence,
         table='team_orders',
         table_rows=table_rows,
         error_msg=error_msg,
@@ -158,7 +158,7 @@ def api_post_single(table='single_orders'):
             data = request.get_json()
 
             response = api_insert_orders(
-                adapter.persistance,
+                adapter.persistence,
                 session_id=data['session'],
                 request=data['orders'],
                 table=table
