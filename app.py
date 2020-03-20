@@ -124,7 +124,7 @@ def post_team():
 
 @app.route(score_route)
 def score():
-    score = calculate_score(query, session_id)
+    score = calculate_score(adapter.query, session_id)
 
     template = {
         'title': 'Sua pontuação é...',
@@ -157,7 +157,7 @@ def api_post_single(table='single_orders'):
             data = request.get_json()
 
             response = api_insert_orders(
-                persistance,
+                adapter.persistance,
                 session_id=data['session'],
                 request=data['orders'],
                 table=table
@@ -179,7 +179,7 @@ def api_score():
         if request.method == 'GET':
             data = request.get_json()
 
-            score = calculate_score(query, data['session'])
+            score = calculate_score(adapter.query, data['session'])
 
             return f"{{\n\t'code': 200,\n\t'message': 'success',\n\t'response': {{\n\t\t'score': {score} \n\t}}\n}}"
     except Exception as e:
