@@ -188,5 +188,5 @@ def api_score():
 
 if __name__ == "__main__":
     app.run()
-    conn.close()
+    adapter.close()
 

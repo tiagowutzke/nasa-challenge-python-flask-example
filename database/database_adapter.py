@@ -16,3 +16,6 @@ class DatabaseAdapter:
 
     def select_all(self, table, *columns):
         return self.query.select_all(table, columns)
+
+    def close(self):
+        return self.conn.close()
