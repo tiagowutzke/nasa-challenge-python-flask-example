@@ -1,6 +1,6 @@
 import logging
 
-from reuse.database.query import Query
+from database.query import Query
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

@@ -20,7 +20,7 @@ class Query:
         is_more_one_column = len(columns) > 1
         return ', '.join(columns) if is_more_one_column else columns[0], is_more_one_column
 
-    def select_all(self, table, *columns):
+    def select_all(self, table, columns):
         """ Select all rows from chosen table and columns
         :param table: (str) table that query will made
         :param columns: (list) columns chosen to table query

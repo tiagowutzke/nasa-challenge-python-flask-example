@@ -2,23 +2,14 @@ import uuid
 
 from flask import Flask, render_template, request
 
-from reuse.process import insert_orders, calculate_score, api_insert_orders
+from process import insert_orders, calculate_score, api_insert_orders
 
-from reuse.database.query import Query
-from reuse.database.connection import Connection
-from reuse.database.persistence import Persistence
-
+from database.database_adapter import DatabaseAdapter
 
 app = Flask(__name__)
 
-# Database connection for all transactions
-conn = Connection()
-
-# Object for query database
-query = Query(conn)
-
-# Object for transaction in database
-persistance = Persistence(conn)
+# Database interface
+adapter = DatabaseAdapter()
 
 # routes
 index_route = "/"
@@ -39,19 +30,19 @@ session_id = str(uuid.uuid4())
 
 @app.route(index_route)
 def index():
-    items = query.select_all('items', 'id', 'description')
+    items = adapter.select_all('items', 'id', 'description')
     return render_template('index.html', title='Desafio da Nasa', items=items, route=single_route)
 
 
 @app.route(single_route)
 def single():
-    items = query.select_all('items', 'id', 'description')
+    items = adapter.select_all('items', 'id', 'description')
     return render_template('items.html', title='Teste individual', items=items, route=post_single_route)
 
 
 @app.route(team_route)
 def team():
-    items = query.select_all('items', 'id', 'description')
+    items = adapter.select_all('items', 'id', 'description')
     return render_template('items.html', title='Teste da equipe', items=items, route=post_team_route)
 
 
@@ -77,7 +68,7 @@ def post_single():
     msg_template = insert_orders(
         request=request,
         session_id=session_id,
-        persistance=persistance,
+        persistance=adapter.persistence,
         table='single_orders',
         table_rows=table_rows,
         error_msg=error_msg,
@@ -115,7 +106,7 @@ def post_team():
     msg_template = insert_orders(
         request=request,
         session_id=session_id,
-        persistance=persistance,
+        persistance=adapter.persistance,
         table='team_orders',
         table_rows=table_rows,
         error_msg=error_msg,
