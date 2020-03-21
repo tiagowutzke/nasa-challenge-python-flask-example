@@ -22,6 +22,7 @@ score_route = "/score"
 
 # api routes
 api_get_session_id = "/api/get-session"
+api_get_items = "/api/get-items"
 api_post_single = "/api/post-single"
 api_post_team = "/api/post-team"
 api_score_route = "/api/score"
@@ -150,6 +151,15 @@ def score():
 @app.route(api_get_session_id)
 def api_get_session_id():
     return str(uuid.uuid4())
+
+
+@app.route(api_get_items)
+def api_get_items():
+    return {
+        "code": 200,
+        "items":
+        adapter.select_all('items', 'id', 'description')
+    }
 
 
 @app.route(api_post_single, methods=['POST'])
