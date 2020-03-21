@@ -13,9 +13,12 @@
                     {{ message }}
                     {% endif %}
                 </div>
-                    <button type="submit" style="border-width:3px;" class="btn btn-outline-{{ alert_class }}">
-                        <a style="color:unset" href="{{ route }}">{{ message_button }}</a>
-                    </button>
+                {% if style %}
+                <span style="color: #a9a6a6; font-style: italic;">Seu id é: {{ session_id }}</span><br><br>
+                {% endif %}
+                <button type="submit" style="border-width:3px;" class="btn btn-outline-{{ alert_class }}">
+                    <a style="color:unset" href="{{ route }}">{{ message_button }}</a>
+                </button>
                 </form>
             </div>
         </div>

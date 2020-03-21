@@ -142,7 +142,8 @@ def score():
                            alert_class=template['html_class'],
                            message_button=template['message_button'],
                            route=template['route'],
-                           style=template['style']
+                           style=template['style'],
+                           session_id=session_id
                            )
 
 

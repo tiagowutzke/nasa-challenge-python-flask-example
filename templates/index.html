@@ -20,6 +20,12 @@
 
 <body>
 
+<script>
+setTimeout(function(){
+  document.getElementById("intro-video").play();
+}, 2000);
+</script>
+
 <div class="limiter">
     <div class="container-table100">
         <div class="wrap-table100">
@@ -27,18 +33,11 @@
                     <div id="index-title">
                         <h1 style="">{{ title }}</h1>
                     </div>
+                    <video width="100%" id="intro-video" controls="controls" src="/static/intro.mp4"></video><br><br>
                     <p>
-                        Você é um membro da tripulação de uma nave espacial, que programou um encontro, junto com outra
-                        nave na superfície luminosa da Lua… entretanto dificuldades mecânicas obrigaram sua nave a uma
-                        descida forçada, num ponto distante a 100 Km do planejado encontro. A maior parte do equipamento,
-                        na descida forçada ficou avariada e já que sua sobrevivência depende de encontrar o ponto de
-                        encontro a 100 Km, é preciso escolher, dos itens abaixo, os mais essenciais, para este percurso.
-                    </p><br>
-                    <p>
-                        Abaixo, há uma lista de 15 itens de coisas que não ficaram estragadas na descida. Seu trabalho
-                        será de numerar esses itens em termos de sua importância para alcançar o ponto de encontro. A
-                        seguir, você irá comparar a sua lista com a lista de sua equipe para então gerar a sua pontuação
-                        desafio, comparando ambas as listas com um gabarito oficial da Nasa.
+                        Sua missão é de numerar esses itens em termos de sua importância para alcançar o ponto de encontro. Em
+                        seguida, você irá comparar a sua lista com a lista de sua equipe para então gerar a sua pontuação
+                        do desafio, comparando ambas as listas com um gabarito oficial da Nasa.
                     </p><br>
                     <p>
                         A lista dos itens é a seguinte:<br><br>
