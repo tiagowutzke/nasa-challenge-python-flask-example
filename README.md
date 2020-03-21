@@ -3,6 +3,9 @@
 [Sobre o desafio](#DESCRIÇÃO-DO-DESAFIO)<br>
 [Especificações técnicas](#ESPECIFICAÇÕES-TÉCNICAS)
 
+## Aplicativo em produção
+Este projeto está em produção no heroku. Você pode testar o aplicativo de forma online [aqui](https://nasa-challenge-flask-example.herokuapp.com/).
+
 ## Descrição do desafio
 
 Você é um membro da tripulação de uma nave espacial, que programou um encontro, junto com outra nave na superfície luminosa da Lua… entretanto dificuldades mecânicas obrigaram sua nave a uma descida forçada, num ponto distante a 100 Km do planejado encontro. A maior parte do equipamento, na descida forçada ficou avariada e já que sua sobrevivência depende de encontrar o ponto de encontro a 100 Km, é preciso escolher, dos itens abaixo, os mais essenciais, para este percurso.
@@ -75,7 +78,7 @@ Método: GET
 
 Exemplo de uso:
 ```curl
-curl localhost:5000/api/get-session
+curl https://nasa-challenge-flask-example.herokuapp.com/api/get-session
 ```
 
 Exemplo de resposta:
@@ -84,6 +87,85 @@ c2689b54-cc76-493e-99ba-f96f800155d9
 ```
 O exemplo acima é o id de sessão (formato uuid v4) que deve ser usado na requisições a seguir.
 
+#### Get items
+
+Para buscar a lista dos itens cadastrados no desafio e seus respectivos ids.
+
+Método: GET
+
+Exemplo de uso:
+```curl
+curl https://nasa-challenge-flask-example.herokuapp.com/api/get-items
+```
+
+Exemplo de resposta:
+```json
+{
+  "code": 200, 
+  "items": [
+    [
+      1, 
+      "caixa de f\u00f3sforo"
+    ], 
+    [
+      2, 
+      "alimento concentrado"
+    ], 
+    [
+      3, 
+      "corda de nylon"
+    ], 
+    [
+      4, 
+      "seda de para-quedas"
+    ], 
+    [
+      5, 
+      "um aquecedor port\u00e1til"
+    ], 
+    [
+      6, 
+      "duas pistolas de calibre 45"
+    ], 
+    [
+      7, 
+      "uma caixa de leite em p\u00f3"
+    ], 
+    [
+      8, 
+      "um mapa estelar( da constela\u00e7\u00e3o. lunar)"
+    ], 
+    [
+      9, 
+      "uma balsa salva-vidas"
+    ], 
+    [
+      10, 
+      "dois tanques de oxig\u00eanio 100 libras cada"
+    ], 
+    [
+      11, 
+      "uma b\u00fassola"
+    ], 
+    [
+      12, 
+      "cinco gal\u00f5es de \u00e1gua"
+    ], 
+    [
+      13, 
+      "sinais luminosos"
+    ], 
+    [
+      14, 
+      "um estojo de primeiro socorros c/ agulhas de inje\u00e7\u00e3o"
+    ], 
+    [
+      15, 
+      "um receptor e transmissor FM, movido a for\u00e7a solar"
+    ]
+  ]
+}
+```
 
 #### Post single
 
@@ -104,7 +186,7 @@ curl -X POST -d '{
           "{{id do item2}}": "{{ordenacao do item2}}"
         }
       }' 
-  -H 'Content-Type: application/json' localhost:5000/api/post-single
+  -H 'Content-Type: application/json' https://nasa-challenge-flask-example.herokuapp.com/api/post-single
 ```
 *Nota:*
 
@@ -137,7 +219,7 @@ curl -X POST -d '{
           "{{id do item2}}": "{{ordenacao do item2}}"
         }
       }' 
-  -H 'Content-Type: application/json' localhost:5000/api/post-team
+  -H 'Content-Type: application/json' https://nasa-challenge-flask-example.herokuapp.com/api/post-team
 ```
 *Nota:*
 
@@ -163,7 +245,7 @@ Exemplo de uso:
 curl -X GET -d '{ 
       "session": "{{id de sessão}}" 
       }' 
--H 'Content-Type: application/json' localhost:5000/api/score
+-H 'Content-Type: application/json' https://nasa-challenge-flask-example.herokuapp.com/api/score
 ```
 *Nota:*
 
